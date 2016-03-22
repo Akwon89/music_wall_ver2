@@ -3,6 +3,7 @@
 </div>
 <hr/>
 
+<h2><a href="/tracks">Check Out the tunes!</a></h2>
 <% if current_user %>
   
   <h3>Welcome, <%= current_user[:username] %>!
@@ -10,4 +11,5 @@
   <a href="/users/logout">Log Out</a>
 <% else %>
   <h3><a href='/users/login'>Log in here</a></h3>
+  <p>Not a registered user?<a href='/users/new'>Sign up here!</a></p>
 <% end %>

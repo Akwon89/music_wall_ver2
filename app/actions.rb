@@ -8,8 +8,6 @@ helpers do
 
 end
 
-
-
 # Homepage (Root path)
 get '/' do
   erb :index
