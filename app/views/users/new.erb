@@ -1,0 +1,45 @@
+<div class="page-header">
+  <h1>Sign up<small>  closer to being cool...</small></h1>
+</div>
+<hr/>
+
+<% if @user && @user.errors.any? %>
+  <div>
+    <strong>Some issues with your signup info, please fix them:</strong>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  </div>
+<% end %>
+
+<form method="post" action="/users" >
+  <div>
+    <label for="basic-url">Username: </label>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">Be unique</span>
+          <input type="text" name="username"> 
+      </div>
+  </div>
+
+  <div>
+    <label for="basic-url">Email: </label>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">email address</span>
+          <input type="text" name="email"> 
+      </div>
+  </div>
+
+  <div>
+    <label for="basic-url">Password:</label>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">Keep SAFE!</span>
+          <input type="password" name="password"> 
+      </div>
+  </div>
+
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
