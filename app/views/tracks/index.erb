@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1>Track Listing<small>  Track Attack</small></h1>
+</div>
+<hr/>
+
+<ul class="list-group">
+<% @tracks.each do |track| %>
+   
+  <li class="list-group-item">
+  
+  <div class="track">
+    <h3><a href="/tracks/<%= track.id %>"><%= track.song_title %> <small>(by: <%= track.author %>)</small></a></h3>
+    <p>
+      <a href="<%= track.url %>"><%= track.url %></a>
+    </p>
+  </div>
+  
+
+  </li>
+  
+<% end %>
+</ul>
+
+<hr/>
+<a href="/tracks/new">Post a track... It's FREE (for now)!</a>
+<hr/>

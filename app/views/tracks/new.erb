@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h1>Post a Track<small>  Something cool...</small></h1>
+</div>
+<hr/>
+
+<% if @track.errors.any? %>
+  <div>
+    <strong>Some issues with your message, please fix them:</strong>
+    <ul>
+      <% @track.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<form method="post" action="/tracks" >
+  <div>
+    <label for="basic-url">Author:</label>
+      <div class="input-group">
+      <span class="input-group-addon" id="basic-addon3">Artist</span>
+      <input type="text" name="author" value="<%= @track.author %>"> 
+      </div>
+  </div>
+
+  <div>
+  <label for="basic-url">Song Title:</label>
+      <div class="input-group">
+      <span class="input-group-addon" id="basic-addon3">song</span>
+      <input type="text" name="song_title" value="<%= @track.song_title %>"> 
+      </div>
+  </div>
+
+  <div>
+    <label for="basic-url">Song URL:</label>
+      <div class="input-group">
+      <span class="input-group-addon" id="basic-addon3">Link to song</span>
+      <input type="text" name="url" value="<%= @track.url %>"> 
+      </div>
+  </div>
+
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
