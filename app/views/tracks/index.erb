@@ -13,9 +13,23 @@
         <a href="<%= track.url %>"><%= track.url %></a>
         </p>
       </div>
+      <% if current_user %>
+          <% if track.votes.find { |v| v.user_id == current_user.id }%>
+            <p> Voted! </p>
+            <form method="post" action="/downvoted">
+              <input type="hidden" name="track_id" value="<%= track.id %>">
+              <input type="submit" class="btn btn-sm btn-primary" value="Downvote">
+            </form>
+          <% else %>
+        <form method="post" action="/voted">
+          <input type="hidden" name="track_id" value="<%= track.id %>">
+          <input type="submit" class="btn btn-sm btn-primary" value="Vote">
+        </form>
+          <% end %>
+      <% end %>
+      <p class="text-center">Votes: <%= track.total_votes %></p>
     </li>
-  
-<% end %>
+  <% end %>
 </ul>
 
 <hr/>

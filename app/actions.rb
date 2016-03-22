@@ -79,3 +79,21 @@ get '/users/logout' do
   session[:user_id] = nil
   redirect '/'
 end
+#########
+
+post '/voted' do
+  @vote = Vote.create(
+    user_id: session[:user_id],
+    track_id: params[:track_id]
+    )
+  @vote.save
+  redirect '/tracks'
+end
+
+post '/downvoted' do
+  @vote = Vote.find_by(
+    user_id: session[:user_id],
+    track_id: params[:track_id])
+  @vote.destroy
+  redirect '/tracks'
+end

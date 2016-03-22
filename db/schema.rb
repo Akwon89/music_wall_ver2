@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322130457) do
+ActiveRecord::Schema.define(version: 20160322165435) do
 
   create_table "tracks", force: :cascade do |t|
     t.string  "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160322130457) do
     t.date    "created_at"
     t.date    "updated_at"
     t.integer "user_id"
+    t.integer "total_votes", default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -28,6 +29,11 @@ ActiveRecord::Schema.define(version: 20160322130457) do
     t.string "password"
     t.date   "created_at"
     t.date   "updated_at"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "track_id"
   end
 
 end
