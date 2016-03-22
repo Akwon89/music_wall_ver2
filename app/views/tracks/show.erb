@@ -13,6 +13,9 @@
 <p>
   <%= @track.created_at %>
 </p>
+<p>
+  Posted by: <%= @track.user.username %>
+</p>
 <hr/>
 
 <h3>Other Tracks from this artist</h3>
@@ -25,12 +28,14 @@
       <th>Artist</th>
       <th>Title</th> 
       <th>url</th>
+      <th>Posted by<th>
     </tr>
     <% @tracks.reverse.each do |track| %>
     <tr>
       <td><%= track.artist %></td>
       <td><%= track.title %></td> 
       <td><a href="<%= @track.url %>"><%= track.url %></a></td>
+      <td><%= track.user.username %></td>
     </tr>
     <% end %>
   </table>

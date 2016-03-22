@@ -35,6 +35,7 @@ post '/tracks' do
     artist: params[:artist],
     url:  params[:url]
   )
+  @track.user_id = current_user.id
   if @track.save
     redirect '/tracks'
   else
