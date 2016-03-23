@@ -18,6 +18,23 @@
 </p>
 <hr/>
 
+<% if current_user %>
+  <% if @track.votes.find { |v| v.user_id == current_user.id }%>
+    <p> Voted! </p>
+    <form method="post" action="/downvoted_in_show/<%= @track.id %>">
+      <input type="hidden" name="track_id" value="<%= @track.id %>">
+      <input type="submit" class="btn btn-sm btn-primary" value="Downvote">
+    </form>
+  <% else %>
+    <form method="post" action="/voted_in_show/<%= @track.id %>">
+      <input type="hidden" name="track_id" value="<%= @track.id %>">
+      <input type="submit" class="btn btn-sm btn-primary" value="Vote">
+    </form>
+  <% end %>
+<% end %>
+<p class="text-center">Votes: <%= @track.total_votes %></p>
+
+
 <h3>Other Tracks from this artist</h3>
 <div class="panel panel-default">
   <!-- Default panel contents -->
@@ -28,6 +45,8 @@
       <th>Artist</th>
       <th>Title</th> 
       <th>url</th>
+      <th>vote</th>
+      <th>Votes</th>
       <th>Posted by<th>
     </tr>
     <% @tracks.reverse.each do |track| %>
@@ -35,6 +54,22 @@
       <td><%= track.artist %></td>
       <td><%= track.title %></td> 
       <td><a href="<%= @track.url %>"><%= track.url %></a></td>
+      <td><% if current_user %>
+            <% if @track.votes.find { |v| v.user_id == current_user.id }%>
+              <p> Voted! </p>
+              <form method="post" action="/downvoted_in_show/<%= @track.id %>">
+                <input type="hidden" name="track_id" value="<%= @track.id %>">
+                <input type="submit" class="btn btn-sm btn-primary" value="Downvote">
+              </form>
+            <% else %>
+              <form method="post" action="/voted_in_show/<%= @track.id %>">
+                <input type="hidden" name="track_id" value="<%= @track.id %>">
+                <input type="submit" class="btn btn-sm btn-primary" value="Vote">
+              </form>
+            <% end %>
+          <% end %>
+      </td>
+      <td><%= track.total_votes %></td>
       <td><%= track.user.username %></td>
     </tr>
     <% end %>

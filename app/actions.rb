@@ -90,10 +90,28 @@ post '/voted' do
   redirect '/tracks'
 end
 
+post '/voted_in_show/:track_id' do
+  @vote = Vote.create(
+    user_id: session[:user_id],
+    track_id: params[:track_id]
+    )
+  @vote.save
+  redirect "/tracks/#{params[:track_id]}"
+end
+
+
 post '/downvoted' do
   @vote = Vote.find_by(
     user_id: session[:user_id],
     track_id: params[:track_id])
   @vote.destroy
   redirect '/tracks'
+end
+
+post '/downvoted_in_show/:track_id' do
+  @vote = Vote.find_by(
+    user_id: session[:user_id],
+    track_id: params[:track_id])
+  @vote.destroy
+  redirect "/tracks/#{params[:track_id]}"
 end
